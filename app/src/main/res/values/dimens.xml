@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Movie Grid List View Dimensions-->
+
+    <dimen name="movie_grid_list_view_linear_layout_padding">5dp</dimen>
+    <dimen name="poster_list_view_layout_height">250dp</dimen>
+    <dimen name="poster_list_view_layout_width">250dp</dimen>
+
+
+    <!-- Activity Main Dimensions-->
+    <dimen name="error_message_text_view_text_size">16sp</dimen>
+    <dimen name="progress_bar_layout_width">42dp</dimen>
+    <dimen name="progress_bar_layout_height">42dp</dimen>
+
+    <!-- Activity Detail Dimensions Vertical-->
+    <dimen name="movie_poster_layout_width">150dp</dimen>
+    <dimen name="movie_poster_layout_height">250dp</dimen>
+    <dimen name="movie_poster_layout_margin_start">4dp</dimen>
+    <dimen name="movie_poster_layout_margin_top">8dp</dimen>
+    <dimen name="movie_rating_header_text_view_layout_width">195dp</dimen>
+    <dimen name="movie_rating_header_text_view_layout_margin_end">4dp</dimen>
+    <dimen name="movie_rating_header_text_view_layout_margin_start">8dp</dimen>
+    <dimen name="movie_rating_header_text_view_layout_margin_top">16dp</dimen>
+    <dimen name="movie_release_date_header_text_view_layout_width">195dp</dimen>
+    <dimen name="movie_release_date_header_text_view_layout_margin_end">4dp</dimen>
+    <dimen name="movie_release_date_header_text_view_layout_margin_start">8dp</dimen>
+    <dimen name="movie_release_date_header_text_view_layout_margin_top">4dp</dimen>
+    <dimen name="movie_rating_value_text_view_layout_margin_end">90dp</dimen>
+    <dimen name="movie_rating_value_text_view_layout_margin_top">4dp</dimen>
+    <dimen name="movie_rating_value_text_view_text_size">18sp</dimen>
+    <dimen name="movie_release_date_value_text_view_layout_margin_end">60dp</dimen>
+    <dimen name="movie_release_date_value_text_view_layout_margin_top">4dp</dimen>
+    <dimen name="movie_release_date_value_text_view_text_size">18sp</dimen>
+    <dimen name="movie_overview_header_text_view_layout_margin_end">4dp</dimen>
+    <dimen name="movie_overview_header_text_view_layout_margin_start">4dp</dimen>
+    <dimen name="movie_overview_header_text_view_layout_margin_top">8dp</dimen>
+    <dimen name="movie_overview_value_text_view_layout_margin_end">4dp</dimen>
+    <dimen name="movie_overview_value_text_view_layout_margin_start">4dp</dimen>
+    <dimen name="movie_overview_value_text_view_layout_margin_top">4dp</dimen>
+    <dimen name="movie_overview_value_text_view_padding">4dp</dimen>
+    <dimen name="movie_overview_value_text_view_text_size">18sp</dimen>
+
+    <!-- Activity Detail Dimensions Horizontal-->
+    <dimen name="movie_poster_layout_margin_start_landscape">8dp</dimen>
+    <dimen name="movie_rating_header_text_view_layout_width_landscape">206dp</dimen>
+    <dimen name="movie_release_date_header_text_view_layout_width_landscape">206dp</dimen>
+    <dimen name="movie_release_date_header_text_view_layout_margin_end_landscape">8dp</dimen>
+    <dimen name="movie_release_date_header_text_view_layout_margin_top_landscape">16dp</dimen>
+    <dimen name="movie_rating_value_text_view_layout_margin_start_landscape">95dp</dimen>
+    <dimen name="movie_rating_value_text_view_layout_margin_top_landscape">8dp</dimen>
+    <dimen name="movie_release_date_value_text_view_layout_margin_start_landscape">155dp</dimen>
+    <dimen name="movie_release_date_value_text_view_layout_margin_top_landscape">8dp</dimen>
+    <dimen name="movie_overview_header_text_view_layout_width_landscape">417dp</dimen>
+    <dimen name="movie_overview_header_text_view_layout_margin_start_landscape">8dp</dimen>
+    <dimen name="movie_overview_header_text_view_layout_margin_top_landscape">8dp</dimen>
+    <dimen name="movie_overview_value_text_view_layout_width_landscape">400dp</dimen>
+    <dimen name="movie_overview_value_text_view_layout_margin_end_landscape">4dp</dimen>
+    <dimen name="movie_overview_value_text_view_layout_margin_start_landscape">4dp</dimen>
+    <dimen name="movie_overview_value_text_view_layout_margin_top_landscape">8dp</dimen>
+
+
+</resources>
