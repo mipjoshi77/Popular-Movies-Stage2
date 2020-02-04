@@ -1,7 +1,15 @@
 package nanodegree.udacity.popular_movies_stage2.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "movie_table")
 public class Movie {
 
+    @PrimaryKey
+    @NonNull
     private String movideId;
     private String originalTitle;
     private String rating;
@@ -24,6 +32,7 @@ public class Movie {
         this.moviePoster = moviePoster;
     }
 
+    @Ignore
     public Movie() {
     }
 
@@ -36,6 +45,30 @@ public class Movie {
     public void setMovieTrailerData(String trailerName, String trailerKey, String trailerId) {
         this.trailerName = trailerName;
         this.trailerKey = trailerKey;
+        this.trailerId = trailerId;
+    }
+
+    public void setReviewAuthor(String reviewAuthor) {
+        this.reviewAuthor = reviewAuthor;
+    }
+
+    public void setReviewContent(String reviewContent) {
+        this.reviewContent = reviewContent;
+    }
+
+    public void setReviewUrl(String reviewUrl) {
+        this.reviewUrl = reviewUrl;
+    }
+
+    public void setTrailerName(String trailerName) {
+        this.trailerName = trailerName;
+    }
+
+    public void setTrailerKey(String trailerKey) {
+        this.trailerKey = trailerKey;
+    }
+
+    public void setTrailerId(String trailerId) {
         this.trailerId = trailerId;
     }
 
@@ -86,5 +119,9 @@ public class Movie {
     public String getTrailerImageUrl() {
         String baseUrl = "https://img.youtube.com/vi/"+trailerKey+"/0.jpg";
         return baseUrl;
+    }
+
+    public String getTrailerId() {
+        return trailerId;
     }
 }

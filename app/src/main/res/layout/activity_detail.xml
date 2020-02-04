@@ -166,6 +166,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movie_trailer_header" />
 
+        <ToggleButton
+            android:id="@+id/favorite_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/favorite_button"
+            android:checked="false"
+            android:text=""
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintStart_toEndOf="@+id/movie_poster"
+            app:layout_constraintTop_toBottomOf="@+id/movie_release_date_value" />
+
 
 
     </android.support.constraint.ConstraintLayout>
