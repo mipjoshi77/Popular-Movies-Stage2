@@ -1,16 +1,19 @@
 package nanodegree.udacity.popular_movies_stage2.model;
 
-import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
+
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+import java.io.Serializable;
 
 @Entity(tableName = "movie_table")
-public class Movie {
+public class Movie implements Serializable {
 
     @PrimaryKey
     @NonNull
-    private String movideId;
+    private String movieId;
     private String originalTitle;
     private String rating;
     private String overview;
@@ -22,9 +25,10 @@ public class Movie {
     private String trailerName;
     private String trailerKey;
     private String trailerId;
+    private boolean isFavorite;
 
-    public Movie (String movideId, String originalTitle, String rating, String overview, String releaseDate, String moviePoster) {
-        this.movideId = movideId;
+    public Movie (String movieId, String originalTitle, String rating, String overview, String releaseDate, String moviePoster) {
+        this.movieId = movieId;
         this.originalTitle = originalTitle;
         this.rating = rating;
         this.overview = overview;
@@ -72,8 +76,12 @@ public class Movie {
         this.trailerId = trailerId;
     }
 
-    public String getMovideId() {
-        return movideId;
+    public void setFavorite(boolean isFavorite) {
+        this.isFavorite = isFavorite;
+    }
+
+    public String getMovieId() {
+        return movieId;
     }
 
     public String getOriginalTitle() {
@@ -123,5 +131,9 @@ public class Movie {
 
     public String getTrailerId() {
         return trailerId;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
     }
 }

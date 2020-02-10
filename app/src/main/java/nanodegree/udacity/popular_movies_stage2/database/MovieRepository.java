@@ -31,4 +31,14 @@ public class MovieRepository {
             mMovieDao.insertMovie(movie);
         });
     }
+
+    void deleteMovie(Movie movie) {
+        MovieRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mMovieDao.deleteMovie(movie);
+        });
+    }
+
+    boolean isFavorite(String movieId) {
+        return mMovieDao.isFavorite(movieId);
+    }
 }

@@ -1,18 +1,28 @@
 package nanodegree.udacity.popular_movies_stage2;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.ScaleAnimation;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.net.URL;
@@ -21,6 +31,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import nanodegree.udacity.popular_movies_stage1.R;
+import nanodegree.udacity.popular_movies_stage2.database.MovieViewModel;
 import nanodegree.udacity.popular_movies_stage2.model.Movie;
 import nanodegree.udacity.popular_movies_stage2.utilities.JsonUtils;
 import nanodegree.udacity.popular_movies_stage2.utilities.NetworkUtils;
@@ -39,6 +50,8 @@ public class DetailsActivity extends AppCompatActivity implements MovieTrailerAd
     RecyclerView reviewRecyclerView;
     @BindView(R.id.movie_trailer_rv)
     RecyclerView trailerRecyclerView;
+    @BindView(R.id.favorite_button)
+    ToggleButton favoriteButton;
 
     private List<Movie> movieReviewList;
     private List<Movie> movieTrailerList;
@@ -48,6 +61,10 @@ public class DetailsActivity extends AppCompatActivity implements MovieTrailerAd
     public final static String VIDEO_QUERY = "videos";
     public final static String YOUTUBE_BASE_APP = "vnd.youtube:";
     public final static String YOUTUBE_BASE_URL = "http://www.youtube.com/watch?v=";
+
+    private ScaleAnimation scaleAnimation;
+    private BounceInterpolator bounceInterpolator;
+    private boolean isFavorite;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,15 +82,34 @@ public class DetailsActivity extends AppCompatActivity implements MovieTrailerAd
         trailerRecyclerView.setAdapter(movieTrailerAdapter);
         trailerRecyclerView.setHasFixedSize(true);
 
+        MovieViewModel movieViewModel = ViewModelProviders.of(this).get(MovieViewModel.class);
+
         Intent intentThatStartedThisActivity = getIntent();
 
         if (intentThatStartedThisActivity != null) {
-            String movieId = intentThatStartedThisActivity.getStringExtra("id");
-            String moviePoster = intentThatStartedThisActivity.getStringExtra("poster");
-            String title = intentThatStartedThisActivity.getStringExtra("title");
-            String rating = intentThatStartedThisActivity.getStringExtra("rate");
-            String release = intentThatStartedThisActivity.getStringExtra("release");
-            String overview = intentThatStartedThisActivity.getStringExtra("overview");
+            Movie movie = (Movie) intentThatStartedThisActivity.getSerializableExtra("Movie");
+            String movieId = movie.getMovieId();
+            String moviePoster = movie.getMoviePoster();
+            String title = movie.getOriginalTitle();
+            String rating = movie.getRating();
+            String release = movie.getReleaseDate();
+            String overview = movie.getOverview();
+            int position = intentThatStartedThisActivity.getExtras().getInt("temp");
+            Log.d("ID9", "Passed position" +position);
+//            int moviePosition = Integer.parseInt(position);
+
+
+//            String movieId = intentThatStartedThisActivity.getStringExtra("id");
+//            String moviePoster = intentThatStartedThisActivity.getStringExtra("poster");
+//            String title = intentThatStartedThisActivity.getStringExtra("title");
+//            String rating = intentThatStartedThisActivity.getStringExtra("rate");
+//            String release = intentThatStartedThisActivity.getStringExtra("release");
+//            String overview = intentThatStartedThisActivity.getStringExtra("overview");
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                String imageTransitionName = intentThatStartedThisActivity.getStringExtra("imageTransitionName");
+                movieImage.setTransitionName(imageTransitionName);
+            }
 
             setTitle(title);
             movieRatingValue.setText(rating);
@@ -83,11 +119,84 @@ public class DetailsActivity extends AppCompatActivity implements MovieTrailerAd
             Picasso.get()
                     .load(moviePoster)
                     .fit()
-                    .into(movieImage);
+                    .into(movieImage, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            supportStartPostponedEnterTransition();
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                            supportStartPostponedEnterTransition();
+                        }
+                    });
 
             new FetchMovieReviewsTask().execute(movieId, REVIEW_QUERY);
 
             new FetchMovieVideosTask().execute(movieId, VIDEO_QUERY);
+
+            movieViewModel.getFavoriteMovieList().observe(this, new Observer<List<Movie>>() {
+                @Override
+                public void onChanged(@Nullable List<Movie> movies) {
+                    ThreadHandler.getExecutorInstance().getDiskIO().execute(() -> {
+                        isFavorite = movieViewModel.isFavorite(movieId);
+
+                        if (isFavorite) {
+                            favoriteButton.setChecked(true);
+                        }
+                        else {
+                            favoriteButton.setChecked(false);
+                        }
+                    });
+
+//                    for (Movie favMovie : movies) {
+//                        if (movie.getMovieId().equals(favMovie.getMovieId()) && !favoriteButton.isChecked()) {
+//                            favoriteButton.setChecked(true);
+//                        }
+//                        else {
+//                            favoriteButton.setChecked(false);
+//                        }
+//                    }
+                }
+            });
+
+            scaleAnimation = new ScaleAnimation(0.7f, 1.0f, 0.7f, 1.0f, Animation.RELATIVE_TO_SELF, 0.7f, Animation.RELATIVE_TO_SELF, 0.7f);
+            scaleAnimation.setDuration(500);
+            bounceInterpolator = new BounceInterpolator();
+            scaleAnimation.setInterpolator(bounceInterpolator);
+
+
+            favoriteButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+
+                    ThreadHandler.getExecutorInstance().getDiskIO().execute(() -> {
+                        isFavorite = movieViewModel.isFavorite(movieId);
+
+                        if (isFavorite) {
+                            compoundButton.startAnimation(scaleAnimation);
+                            movieViewModel.delete(movie);
+                            favoriteButton.setChecked(false);
+                        }
+                        else {
+                            compoundButton.startAnimation(scaleAnimation);
+                            movieViewModel.insert(movie);
+                            favoriteButton.setChecked(true);
+                        }
+                    });
+
+//                    if (isChecked) {
+//                        compoundButton.startAnimation(scaleAnimation);
+//                        movieViewModel.insert(movie);
+//                        favoriteButton.setChecked(true);
+//                    }
+//                    else {
+//                        compoundButton.startAnimation(scaleAnimation);
+//                        movieViewModel.delete(movie);
+//                        favoriteButton.setChecked(false);
+//                    }
+                }
+            });
         }
 
     }

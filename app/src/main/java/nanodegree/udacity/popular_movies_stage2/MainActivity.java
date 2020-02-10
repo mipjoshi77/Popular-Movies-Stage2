@@ -1,7 +1,12 @@
 package nanodegree.udacity.popular_movies_stage2;
 
+import android.app.ActivityOptions;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.annotation.Nullable;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -19,6 +25,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import nanodegree.udacity.popular_movies_stage1.R;
+import nanodegree.udacity.popular_movies_stage2.database.MovieViewModel;
 import nanodegree.udacity.popular_movies_stage2.model.Movie;
 import nanodegree.udacity.popular_movies_stage2.utilities.JsonUtils;
 import nanodegree.udacity.popular_movies_stage2.utilities.NetworkUtils;
@@ -68,17 +75,22 @@ public class MainActivity extends AppCompatActivity implements MovieDBAdapter.Mo
     }
 
     @Override
-    public void onClick(int position) {
+    public void onClick(int position, ImageView imageView, Movie movie) {
         Intent intentToStartDetailsActivity = new Intent(this, DetailsActivity.class);
         intentToStartDetailsActivity.putExtra(Intent.EXTRA_TEXT, position);
-        intentToStartDetailsActivity.putExtra("id", movieList.get(position).getMovideId());
-        intentToStartDetailsActivity.putExtra("title", movieList.get(position).getOriginalTitle());
-        intentToStartDetailsActivity.putExtra("poster", movieList.get(position).getMoviePoster());
-        intentToStartDetailsActivity.putExtra("rate", movieList.get(position).getRating());
-        intentToStartDetailsActivity.putExtra("release", movieList.get(position).getReleaseDate());
-        intentToStartDetailsActivity.putExtra("overview", movieList.get(position).getOverview());
+        intentToStartDetailsActivity.putExtra("Movie", movieList.get(position));
+//        intentToStartDetailsActivity.putExtra("id", movieList.get(position).getMovideId());
+//        intentToStartDetailsActivity.putExtra("title", movieList.get(position).getOriginalTitle());
+//        intentToStartDetailsActivity.putExtra("poster", movieList.get(position).getMoviePoster());
+//        intentToStartDetailsActivity.putExtra("rate", movieList.get(position).getRating());
+//        intentToStartDetailsActivity.putExtra("release", movieList.get(position).getReleaseDate());
+//        intentToStartDetailsActivity.putExtra("overview", movieList.get(position).getOverview());
+        intentToStartDetailsActivity.putExtra("imageTransitionName", ViewCompat.getTransitionName(imageView));
+        intentToStartDetailsActivity.putExtra("temp", position);
 
-        startActivity(intentToStartDetailsActivity);
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, imageView, ViewCompat.getTransitionName(imageView)).toBundle();
+
+        startActivity(intentToStartDetailsActivity, bundle);
     }
 
     public class FetchMovieTask extends AsyncTask<String, Void, List<Movie>> {
@@ -148,6 +160,26 @@ public class MainActivity extends AppCompatActivity implements MovieDBAdapter.Mo
             loadMovieData();
             return true;
         }
+
+        if (menuItemSelected == R.id.action_favorites) {
+            query = "favorites";
+            loadFavoriteMovies();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void loadFavoriteMovies() {
+        MovieViewModel movieViewModel = ViewModelProviders.of(this).get(MovieViewModel.class);
+
+        movieViewModel.getFavoriteMovieList().observe(this, new Observer<List<Movie>>() {
+            @Override
+            public void onChanged(@Nullable List<Movie> favoriteMovieList) {
+                adapter.notifyDataSetChanged();
+                adapter.setFavoriteMovies(favoriteMovieList);
+            }
+        });
     }
 }

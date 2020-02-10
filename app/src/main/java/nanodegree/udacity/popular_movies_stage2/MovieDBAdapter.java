@@ -2,6 +2,7 @@ package nanodegree.udacity.popular_movies_stage2;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,8 @@ public class MovieDBAdapter extends RecyclerView.Adapter<MovieDBAdapter.MovieDBA
                 .load(moviePoster)
                 .fit()
                 .into(holder.moviePoster);
+
+        ViewCompat.setTransitionName(holder.moviePoster, movieList.get(position).getOriginalTitle());
     }
 
     @Override
@@ -50,7 +53,7 @@ public class MovieDBAdapter extends RecyclerView.Adapter<MovieDBAdapter.MovieDBA
     }
 
     public interface MovieDBAdapterOnClickHandler {
-        void onClick(int position);
+        void onClick(int position, ImageView imageView, Movie movie);
     }
 
     public class MovieDBAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -65,7 +68,11 @@ public class MovieDBAdapter extends RecyclerView.Adapter<MovieDBAdapter.MovieDBA
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
-            movieDBAdapterOnClickHandler.onClick(position);
+            movieDBAdapterOnClickHandler.onClick(position, moviePoster, movieList.get(position));
         }
+    }
+
+    public void setFavoriteMovies(List<Movie> favoriteMovieList) {
+        this.movieList = favoriteMovieList;
     }
 }

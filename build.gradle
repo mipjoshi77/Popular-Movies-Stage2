@@ -27,8 +27,8 @@ task clean(type: Delete) {
 }
 
 ext {
-    roomVersion = '2.2.1'
-    archLifecycleVersion = '2.2.0'
+    roomVersion = '1.1.1'
+    archLifecycleVersion = '1.1.1'
     coreTestingVersion = '2.1.0'
     materialVersion = '1.0.0'
 }

@@ -40,6 +40,24 @@
     <dimen name="movie_overview_value_text_view_layout_margin_top">4dp</dimen>
     <dimen name="movie_overview_value_text_view_padding">4dp</dimen>
     <dimen name="movie_overview_value_text_view_text_size">18sp</dimen>
+    <dimen name="movie_review_header_text_view_layout_margin_end_vertical">4dp</dimen>
+    <dimen name="movie_review_header_text_view_layout_margin_start_vertical">4dp</dimen>
+    <dimen name="movie_review_header_text_view_layout_margin_top_vertical">8dp</dimen>
+    <dimen name="movie_reviews_rv_layout_height_vertical">300dp</dimen>
+    <dimen name="movie_reviews_rv_layout_margin_end_vertical">4dp</dimen>
+    <dimen name="movie_reviews_rv_layout_margin_start_vertical">4dp</dimen>
+    <dimen name="movie_reviews_rv_layout_margin_top_vertical">4dp</dimen>
+    <dimen name="movie_trailer_header_layout_margin_end_vertical">4dp</dimen>
+    <dimen name="movie_trailer_header_layout_margin_start_vertical">4dp</dimen>
+    <dimen name="movie_trailer_header_layout_margin_top_vertical">8dp</dimen>
+    <dimen name="movie_trailer_rv_layout_height_vertical">300dp</dimen>
+    <dimen name="movie_trailer_rv_layout_margin_end_vertical">4dp</dimen>
+    <dimen name="movie_trailer_rv_layout_margin_start_vertical">4dp</dimen>
+    <dimen name="movie_trailer_rv_layout_margin_top_vertical">4dp</dimen>
+    <dimen name="movie_favorite_button_layout_width_vertical">50dp</dimen>
+    <dimen name="movie_favorite_button_layout_height_vertical">50dp</dimen>
+    <dimen name="movie_favorite_button_layout_margin_start_vertical">100dp</dimen>
+    <dimen name="movie_favorite_button_layout_margin_top_vertical">32dp</dimen>
 
     <!-- Activity Detail Dimensions Horizontal-->
     <dimen name="movie_poster_layout_margin_start_landscape">8dp</dimen>
@@ -49,15 +67,59 @@
     <dimen name="movie_release_date_header_text_view_layout_margin_top_landscape">16dp</dimen>
     <dimen name="movie_rating_value_text_view_layout_margin_start_landscape">95dp</dimen>
     <dimen name="movie_rating_value_text_view_layout_margin_top_landscape">8dp</dimen>
-    <dimen name="movie_release_date_value_text_view_layout_margin_start_landscape">155dp</dimen>
+    <dimen name="movie_release_date_value_text_view_layout_margin_start_landscape">260dp</dimen>
     <dimen name="movie_release_date_value_text_view_layout_margin_top_landscape">8dp</dimen>
-    <dimen name="movie_overview_header_text_view_layout_width_landscape">417dp</dimen>
+    <dimen name="movie_overview_header_text_view_layout_width_landscape">510dp</dimen>
     <dimen name="movie_overview_header_text_view_layout_margin_start_landscape">8dp</dimen>
     <dimen name="movie_overview_header_text_view_layout_margin_top_landscape">8dp</dimen>
-    <dimen name="movie_overview_value_text_view_layout_width_landscape">400dp</dimen>
+    <dimen name="movie_overview_value_text_view_layout_width_landscape">495dp</dimen>
     <dimen name="movie_overview_value_text_view_layout_margin_end_landscape">4dp</dimen>
     <dimen name="movie_overview_value_text_view_layout_margin_start_landscape">4dp</dimen>
     <dimen name="movie_overview_value_text_view_layout_margin_top_landscape">8dp</dimen>
+    <dimen name="movie_review_header_text_view_layout_width">300dp</dimen>
+    <dimen name="movie_review_header_text_view_layout_margin_start">4dp</dimen>
+    <dimen name="movie_review_header_text_view_layout_margin_top">16dp</dimen>
+    <dimen name="movie_reviews_rv_layout_width">295dp</dimen>
+    <dimen name="movie_reviews_rv_layout_height">300dp</dimen>
+    <dimen name="movie_reviews_rv_layout_margin_start">4dp</dimen>
+    <dimen name="movie_reviews_rv_layout_margin_top">4dp</dimen>
+    <dimen name="movie_trailer_header_layout_width">355dp</dimen>
+    <dimen name="movie_trailer_header_layout_margin_top">16dp</dimen>
+    <dimen name="movie_trailer_header_layout_margin_end">4dp</dimen>
+    <dimen name="movie_trailer_rv_layout_width">350dp</dimen>
+    <dimen name="movie_trailer_rv_layout_height">300dp</dimen>
+    <dimen name="movie_trailer_rv_layout_margin_top">4dp</dimen>
+    <dimen name="movie_trailer_rv_layout_margin_end">4dp</dimen>
+    <dimen name="movie_favorite_button_layout_width">50dp</dimen>
+    <dimen name="movie_favorite_button_layout_height">50dp</dimen>
+    <dimen name="movie_favorite_button_layout_margin_start">65dp</dimen>
+    <dimen name="movie_favorite_button_layout_margin_top">8dp</dimen>
+    <dimen name="vertical_solid_line_layout_width">5dp</dimen>
+    <dimen name="vertical_solid_line_layout_height">300dp</dimen>
+    <dimen name="vertical_solid_line_layout_margin_top">45dp</dimen>
+    <dimen name="vertical_solid_line_layout_margin_end">12dp</dimen>
+
+
+    <!-- Movie Review List Dimensions-->
+    <dimen name="author_name_header_text_view_layout_margin_start">4dp</dimen>
+    <dimen name="author_name_header_text_view_layout_margin_top">4dp</dimen>
+    <dimen name="review_author_text_view_layout_margin_start">98dp</dimen>
+    <dimen name="review_author_text_view_layout_margin_top">4dp</dimen>
+    <dimen name="review_content_text_view_layout_margin_end">4dp</dimen>
+    <dimen name="review_content_text_view_layout_margin_start">4dp</dimen>
+    <dimen name="review_content_text_view_layout_margin_top">4dp</dimen>
+    <dimen name="full_review_button_layout_margin_end">100dp</dimen>
+    <dimen name="full_review_button_layout_margin_start">100dp</dimen>
+    <dimen name="full_review_button_layout_margin_top">4dp</dimen>
+    <dimen name="divider_line_layout_width">0dp</dimen>
+    <dimen name="divider_line_layout_height">2dp</dimen>
+    <dimen name="divider_line_layout_margin_end">4dp</dimen>
+    <dimen name="divider_line_layout_margin_start">4dp</dimen>
+    <dimen name="divider_line_layout_margin_top">4dp</dimen>
+
+
+    <!-- Movie Trailer List Dimensions-->
+    <dimen name="trailer_thumbnail_padding">8dp</dimen>
 
 
 </resources>
