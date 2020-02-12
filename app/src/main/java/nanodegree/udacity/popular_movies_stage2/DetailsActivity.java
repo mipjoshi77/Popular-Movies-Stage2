@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.ScaleAnimation;
@@ -48,6 +49,14 @@ public class DetailsActivity extends AppCompatActivity implements MovieTrailerAd
     RecyclerView trailerRecyclerView;
     @BindView(R.id.favorite_button)
     ToggleButton favoriteButton;
+    @BindView(R.id.movie_review_header)
+    TextView movieReviewHeader;
+    @BindView(R.id.movie_trailer_header)
+    TextView movieTrailerHeader;
+    @BindView(R.id.reviews_not_available)
+    TextView reviewsNotAvailable;
+    @BindView(R.id.trailers_not_available)
+    TextView trailersNotAvailable;
 
     private List<Movie> movieReviewList;
     private List<Movie> movieTrailerList;
@@ -196,12 +205,13 @@ public class DetailsActivity extends AppCompatActivity implements MovieTrailerAd
 
         @Override
         protected void onPostExecute(List<Movie> movieReviewList) {
-            if (movieReviewList != null) {
+            if (!movieReviewList.isEmpty()) {
                 movieReviewAdapter = new MovieReviewAdapter(DetailsActivity.this, movieReviewList);
                 reviewRecyclerView.setAdapter(movieReviewAdapter);
             }
             else {
-//                reviewRecyclerView.setVisibility(View.GONE);
+                reviewsNotAvailable.setVisibility(View.VISIBLE);
+                reviewRecyclerView.setNestedScrollingEnabled(false);
             }
         }
     }
@@ -233,16 +243,20 @@ public class DetailsActivity extends AppCompatActivity implements MovieTrailerAd
 
         @Override
         protected void onPostExecute(List<Movie> movieTrailerList) {
-            if (movieTrailerList != null) {
+            if (!movieTrailerList.isEmpty()) {
                 movieTrailerAdapter = new MovieTrailerAdapter(movieTrailerList, DetailsActivity.this);
                 trailerRecyclerView.setAdapter(movieTrailerAdapter);
             }
             else {
-//                trailerRecyclerView.setVisibility(View.GONE);
+                trailersNotAvailable.setVisibility(View.VISIBLE);
+                trailerRecyclerView.setNestedScrollingEnabled(false);
             }
         }
     }
 
+
+    //Implemented below by referring to this blog post: https://medium.com/@rashi.karanpuria/create-beautiful-toggle-buttons-in-android-64d299050dfb
+    // Implemented ic_favorite.xml/ic_favorite_border.xml and favorite_button.xml by referring to same post
     private void setUpFavoriteButtonAnimation() {
         scaleAnimation = new ScaleAnimation(0.7f, 1.0f, 0.7f, 1.0f, Animation.RELATIVE_TO_SELF, 0.7f, Animation.RELATIVE_TO_SELF, 0.7f);
         scaleAnimation.setDuration(500);

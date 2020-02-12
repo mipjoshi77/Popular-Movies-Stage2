@@ -58,6 +58,12 @@
     <dimen name="movie_favorite_button_layout_height_vertical">50dp</dimen>
     <dimen name="movie_favorite_button_layout_margin_start_vertical">100dp</dimen>
     <dimen name="movie_favorite_button_layout_margin_top_vertical">32dp</dimen>
+    <dimen name="movie_reviews_not_available_text_view_layout_width">300dp</dimen>
+    <dimen name="movie_reviews_not_available_text_view_layout_height">100dp</dimen>
+    <dimen name="movie_reviews_not_available_text_view_layout_margin_top">95dp</dimen>
+    <dimen name="movie_trailers_not_available_text_view_layout_width">300dp</dimen>
+    <dimen name="movie_trailers_not_available_text_view_layout_height">100dp</dimen>
+    <dimen name="movie_trailers_not_available_text_view_layout_margin_top">95dp</dimen>
 
     <!-- Activity Detail Dimensions Horizontal-->
     <dimen name="movie_poster_layout_margin_start_landscape">8dp</dimen>
@@ -98,6 +104,12 @@
     <dimen name="vertical_solid_line_layout_height">300dp</dimen>
     <dimen name="vertical_solid_line_layout_margin_top">45dp</dimen>
     <dimen name="vertical_solid_line_layout_margin_end">12dp</dimen>
+    <dimen name="movie_reviews_not_available_text_view_layout_width_landscape">200dp</dimen>
+    <dimen name="movie_reviews_not_available_text_view_layout_height_landscape">50dp</dimen>
+    <dimen name="movie_reviews_not_available_text_view_layout_margin_top_landscape">115dp</dimen>
+    <dimen name="movie_trailers_not_available_text_view_layout_width_landscape">200dp</dimen>
+    <dimen name="movie_trailers_not_available_text_view_layout_height_landscape">50dp</dimen>
+    <dimen name="movie_trailers_not_available_text_view_layout_margin_top_landscape">115dp</dimen>
 
 
     <!-- Movie Review List Dimensions-->

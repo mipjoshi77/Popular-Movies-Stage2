@@ -14,5 +14,10 @@
     <!-- Movie Review List Item Resources-->
     <string name="movie_review_author_name_header_text">Written By:</string>
     <string name="movie_full_review_button">Full Movie Review</string>
+    <string name="movie_reviews_not_available">Oops! Looks like no Reviews are available.</string>
+
+
+    <!-- Movie Trailer List Item Resources-->
+    <string name="movie_trailers_not_available">Oops! Looks like no trailers are available</string>
 
 </resources>

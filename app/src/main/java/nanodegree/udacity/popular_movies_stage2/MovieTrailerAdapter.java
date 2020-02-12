@@ -3,7 +3,6 @@ package nanodegree.udacity.popular_movies_stage2;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +37,6 @@ public class MovieTrailerAdapter extends RecyclerView.Adapter<MovieTrailerAdapte
     @Override
     public void onBindViewHolder(@NonNull MovieTrailerViewHolder holder, int position) {
         String trailerThumbnail = trailerList.get(position).getTrailerImageUrl();
-        Log.d("ID4", "thumbnail URL: " +trailerThumbnail);
         Picasso.get()
                 .load(trailerThumbnail)
                 .into(holder.trailerThumbnail);

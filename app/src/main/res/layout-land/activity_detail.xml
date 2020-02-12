@@ -125,6 +125,19 @@
             app:layout_constraintTop_toBottomOf="@+id/movie_review_header" />
 
         <TextView
+            android:id="@+id/reviews_not_available"
+            android:layout_width="@dimen/movie_reviews_not_available_text_view_layout_width_landscape"
+            android:layout_height="@dimen/movie_reviews_not_available_text_view_layout_height_landscape"
+            android:layout_marginTop="@dimen/movie_reviews_not_available_text_view_layout_margin_top_landscape"
+            android:text="@string/movie_reviews_not_available"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/movie_reviews_rv"
+            app:layout_constraintStart_toStartOf="@+id/movie_reviews_rv"
+            app:layout_constraintTop_toBottomOf="@+id/movie_review_header" />
+
+        <TextView
             android:id="@+id/movie_trailer_header"
             android:layout_width="@dimen/movie_trailer_header_layout_width"
             android:layout_height="wrap_content"
@@ -147,6 +160,19 @@
             android:layout_marginEnd="@dimen/movie_trailer_rv_layout_margin_end"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_trailer_header" />
+
+        <TextView
+            android:id="@+id/trailers_not_available"
+            android:layout_width="@dimen/movie_trailers_not_available_text_view_layout_width_landscape"
+            android:layout_height="@dimen/movie_trailers_not_available_text_view_layout_height_landscape"
+            android:layout_marginTop="@dimen/movie_trailers_not_available_text_view_layout_margin_top_landscape"
+            android:text="@string/movie_trailers_not_available"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/movie_trailer_rv"
+            app:layout_constraintStart_toStartOf="@+id/movie_trailer_rv"
             app:layout_constraintTop_toBottomOf="@+id/movie_trailer_header" />
 
         <ToggleButton

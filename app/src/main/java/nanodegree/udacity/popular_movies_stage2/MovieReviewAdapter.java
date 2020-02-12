@@ -39,13 +39,10 @@ public class MovieReviewAdapter extends RecyclerView.Adapter<MovieReviewAdapter.
     public void onBindViewHolder(@NonNull MovieReviewViewHolder holder, final int position) {
         holder.reviewAuthor.setText(movieReviewList.get(position).getReviewAuthor());
         holder.reviewContent.setText(movieReviewList.get(position).getReviewContent());
-        holder.fullReviewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent openFullReviewPage = new Intent(Intent.ACTION_VIEW);
-                openFullReviewPage.setData(Uri.parse(movieReviewList.get(position).getReviewUrl()));
-                context.startActivity(openFullReviewPage);
-            }
+        holder.fullReviewButton.setOnClickListener(view -> {
+            Intent openFullReviewPage = new Intent(Intent.ACTION_VIEW);
+            openFullReviewPage.setData(Uri.parse(movieReviewList.get(position).getReviewUrl()));
+            context.startActivity(openFullReviewPage);
         });
     }
 
