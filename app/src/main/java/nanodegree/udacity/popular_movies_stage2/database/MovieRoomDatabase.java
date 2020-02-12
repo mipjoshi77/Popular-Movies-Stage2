@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 
 import nanodegree.udacity.popular_movies_stage2.model.Movie;
 
-@Database(entities = {Movie.class}, version = 3, exportSchema = false)
+@Database(entities = {Movie.class}, version = 5, exportSchema = false)
 public abstract class MovieRoomDatabase extends RoomDatabase {
 
     public abstract MovieDao movieDao();
@@ -22,7 +22,7 @@ public abstract class MovieRoomDatabase extends RoomDatabase {
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static MovieRoomDatabase getDatabase(final Context context) {
+    public static MovieRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (MovieRoomDatabase.class) {
                 if (INSTANCE == null) {

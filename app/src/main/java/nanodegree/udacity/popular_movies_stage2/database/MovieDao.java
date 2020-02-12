@@ -18,9 +18,6 @@ public interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertMovie(Movie movie);
 
-    @Query("SELECT isFavorite FROM movie_table WHERE movieId = :movieId")
-    boolean isFavorite(String movieId);
-
     @Delete
     void deleteMovie(Movie movie);
 
@@ -29,4 +26,7 @@ public interface MovieDao {
 
     @Query("DELETE FROM movie_table")
     void deleteAll();
+
+    @Query("SELECT * FROM movie_table WHERE movieId = :movieId")
+    LiveData<Movie> isMovieInDb(String movieId);
 }

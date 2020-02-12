@@ -1,17 +1,14 @@
 package nanodegree.udacity.popular_movies_stage2;
 
 import android.app.ActivityOptions;
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -79,12 +76,6 @@ public class MainActivity extends AppCompatActivity implements MovieDBAdapter.Mo
         Intent intentToStartDetailsActivity = new Intent(this, DetailsActivity.class);
         intentToStartDetailsActivity.putExtra(Intent.EXTRA_TEXT, position);
         intentToStartDetailsActivity.putExtra("Movie", movieList.get(position));
-//        intentToStartDetailsActivity.putExtra("id", movieList.get(position).getMovideId());
-//        intentToStartDetailsActivity.putExtra("title", movieList.get(position).getOriginalTitle());
-//        intentToStartDetailsActivity.putExtra("poster", movieList.get(position).getMoviePoster());
-//        intentToStartDetailsActivity.putExtra("rate", movieList.get(position).getRating());
-//        intentToStartDetailsActivity.putExtra("release", movieList.get(position).getReleaseDate());
-//        intentToStartDetailsActivity.putExtra("overview", movieList.get(position).getOverview());
         intentToStartDetailsActivity.putExtra("imageTransitionName", ViewCompat.getTransitionName(imageView));
         intentToStartDetailsActivity.putExtra("temp", position);
 
@@ -109,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements MovieDBAdapter.Mo
 
             String sortBy = params[0];
             URL movieRequestUrl = NetworkUtils.urlBuilder(sortBy);
-            Log.d("ID4", "movieRequestUrl: " +movieRequestUrl.toString());
 
             try {
                 String jsonMovieResponse = NetworkUtils.getResponseFromHttpUrl(movieRequestUrl);
@@ -174,12 +164,10 @@ public class MainActivity extends AppCompatActivity implements MovieDBAdapter.Mo
     public void loadFavoriteMovies() {
         MovieViewModel movieViewModel = ViewModelProviders.of(this).get(MovieViewModel.class);
 
-        movieViewModel.getFavoriteMovieList().observe(this, new Observer<List<Movie>>() {
-            @Override
-            public void onChanged(@Nullable List<Movie> favoriteMovieList) {
-                adapter.notifyDataSetChanged();
-                adapter.setFavoriteMovies(favoriteMovieList);
-            }
+        movieViewModel.getFavoriteMovieList().observe(this, favoriteMovieList -> {
+            movieList = favoriteMovieList;
+            adapter.notifyDataSetChanged();
+            adapter.setFavoriteMovies(favoriteMovieList);
         });
     }
 }

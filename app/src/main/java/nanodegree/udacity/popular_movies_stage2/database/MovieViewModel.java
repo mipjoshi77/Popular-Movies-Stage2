@@ -30,8 +30,4 @@ public class MovieViewModel extends AndroidViewModel {
     public void delete(Movie movie) {
         movieRepository.deleteMovie(movie);
     }
-
-    public boolean isFavorite(String movieId) {
-        return movieRepository.isFavorite(movieId);
-    }
 }

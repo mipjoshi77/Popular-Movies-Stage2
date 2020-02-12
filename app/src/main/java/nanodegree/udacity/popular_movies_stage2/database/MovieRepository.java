@@ -24,8 +24,6 @@ public class MovieRepository {
         return mFavoriteMovieList;
     }
 
-
-
     void insertMovie(Movie movie) {
         MovieRoomDatabase.databaseWriteExecutor.execute(() -> {
             mMovieDao.insertMovie(movie);
@@ -36,9 +34,5 @@ public class MovieRepository {
         MovieRoomDatabase.databaseWriteExecutor.execute(() -> {
             mMovieDao.deleteMovie(movie);
         });
-    }
-
-    boolean isFavorite(String movieId) {
-        return mMovieDao.isFavorite(movieId);
     }
 }
