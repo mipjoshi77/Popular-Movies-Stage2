@@ -1,5 +1,5 @@
 # Popular-Movies-Stage2
-Udacity | Android Developer Nanodegree | Project 2: Popular Movies, Stage 2
+Udacity | Android Developer Nanodegree | Project 3: Popular Movies, Stage 2
 
 ### Project Overview:
 Project Overview
