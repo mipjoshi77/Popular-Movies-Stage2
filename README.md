@@ -17,3 +17,8 @@ You’ll add more information to your movie details view:
 
 ### What Will I Learn After Stage 2?
 You will build a fully featured application that looks and feels natural on the latest Android operating system.
+
+### Snapshots:
+<img src="app-snapshots/Screenshot_1.png" width=300>  <img src="app-snapshots/Screenshot_2.png" width=300>
+
+<img src="app-snapshots/Screenshot_3.png" width=300>  <img src="app-snapshots/Screenshot_4.png" width=300>
